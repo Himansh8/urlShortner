@@ -21,7 +21,10 @@ async function handleGenerateShortUrl(req,res){
             redirectURL:body.url,
             visitHistory:[],
         })
-        return res.json({shortid: shortID});
+        return res.render('home',{
+            id:shortID,
+        })
+        // return res.json({shortid: shortID});
     }catch (error) {
         if (error.code === 11000) { // Duplicate key error
             return res.status(409).json({ error: 'ShortId already exists. Try again.' });
