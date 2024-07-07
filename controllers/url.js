@@ -1,6 +1,6 @@
 
 const shortid=require("shortid");
-console.log(shortid());
+// console.log(shortid());
 const URL =require("../models/url");
 
 async function handleGenerateShortUrl(req,res){
