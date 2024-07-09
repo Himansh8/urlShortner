@@ -1,5 +1,6 @@
 const express=require("express");
 const path =require("path");
+const cookieParser=require("cookie-parser");
 
 const app=express();
 const port=8001;
@@ -13,6 +14,7 @@ const URL=require('./models/url')
 const routerUrl=require("./router/url");
 const staticRout=require('./router/staticRouter')
 const userRouter=require('./router/user');
+const {restrictToLoginUserOnly}=require('./middleware/auth');
 
 const {connectToDB}=require("./connect");
 connectToDB('mongodb://127.0.0.1:27017/URLShortner')
@@ -38,9 +40,9 @@ app.get('/urls/:shortId',async (req,res)=>{
 
 app.use(express.urlencoded({extended:false}))//middleware to parese html 
 app.use(express.json())//middleware to parse json
-
+app.use(cookieParser());
 app.use('/',staticRout);
-app.use("/url",routerUrl);
+app.use("/url",restrictToLoginUserOnly,routerUrl);
 app.use("/user",userRouter);
 
 app.listen(port,()=>{
