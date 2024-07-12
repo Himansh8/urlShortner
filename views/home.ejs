@@ -7,9 +7,10 @@
 </head>
 <body>
     <h1>URL Shortner Generator</h1>
-    <% if (locals.id) { %>
-        <p>URL Genrated: http://localhost:8001/urls/<%= id %></p>
-    <% } %>
+    <br>
+    <p>Copied id here: http://localhost:8001/urls/</p>
+        <br>
+    
 
     <div>
         <form method="POST" action="/url">
@@ -18,10 +19,13 @@
             name="url"
             placeholder="http//example.com">
             <button type="submit">Generator</button>
+
+            
         </form>
     </div>
     
     <div>
+        
         <% if (locals.urls) { %>
             <table>
                 <thead>
