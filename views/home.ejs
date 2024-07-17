@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body style="background-color: black; color: azure;">
     <h1>URL Shortner Generator</h1>
     <br>
-    <p>Copied id here: http://localhost:8001/urls/</p>
-        <br>
     
-
-    <div>
+    <div >
         <form method="POST" action="/url">
             <label for="">Enter your Original url</label>
             <input type="text" 
@@ -23,8 +20,9 @@
             
         </form>
     </div>
-    
-    <div>
+    <br>
+    <br>
+    <div style="border: 5px solid blanchedalmond;">
         
         <% if (locals.urls) { %>
             <table>
@@ -33,6 +31,7 @@
                     <th>ShortID</th>
                     <th>RedirectUrl</th>
                     <th>Clicks</th>
+                    <th>Copy link</th>
                 </thead>
                 <tbody>
                     <% urls.forEach((url,index)=> { %>
@@ -41,6 +40,7 @@
                         <td><%= url.shortId %></td>
                         <td><%= url.redirectURL %></td>
                         <td><%= url.visitHistory.length %></td>
+                        <td><input type="text" id="textToCopy" value="http://localhost:8001/urls/<%=url.shortId %>"></td>
                      </tr>
                     <% })
                      %>
@@ -48,5 +48,6 @@
             </table>
         <% } %>
     </div>
+
 </body>
-</html>
+</html> 
